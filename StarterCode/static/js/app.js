@@ -25,7 +25,7 @@ function TableCreate(objects) {
     objects.forEach((element) => {
         var row = tbody.append("tr");
         Object.entries(element).forEach(([key, value]) => {
-        var cell = tbody.append("td");
+        var cell = row.append("td");
         cell.text(value);
         });
     
@@ -105,6 +105,8 @@ d3.event.preventDefault();
 
 passFilterParameters();
 
+// Removes the row elements in the table to clear for a new table.
+d3.select('tbody').selectAll("tr").remove();
 
 //Passes filtered table to the createTable function and populates the html with table elements.
 TableCreate(Filtering(tableData));
